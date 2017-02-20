@@ -8,6 +8,7 @@ import RequireAuth from './components/HOC/RequireAuth';
 import App from './components/app';
 import UserList from './components/UserList';
 import reducers from './reducers';
+import Memo from './components/Memo'
 import Async from './middlewares/async';
 
 
@@ -18,6 +19,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <Route path="resources" component={RequireAuth(UserList)} />
+        <Route path="/memo" component={Memo} />
       </Route>
     </Router>
   </Provider>
