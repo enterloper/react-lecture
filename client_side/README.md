@@ -275,3 +275,103 @@ ReactDOM.render(
   , document.querySelector('.container'));
 
 ```
+###IN USER_LIST.JS
+```
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+//do after explanations
+import * as actions from '../actions';
+//MUST HAVE COMPONENT WILL MOUNT TO SEED THE DATA, SHOW WITHOUT CWM first, then explain why.
+
+class UserList extends Component {
+  //do after explanations
+  componentWillMount() {
+    this.props.fetchUsers();
+  }
+
+  renderUser(user) {
+    return (
+      <div className="card card-block">
+        <h4 className="card-title">{user.name}</h4>
+        <p className="card-text">KSquare Solutions</p>
+        <a className="btn btn-primary">Email</a>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div>
+        {this.props.users.map(this.renderUser)}
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return { users: state.users };
+}
+//add actions only after explaining above.
+export default connect(mapStateToProps, actions)(UserList);
+```
+###IN ACTIONS/TYPES
+```$xslt
+export const CHANGE_AUTH = 'CHANGE_AUTH';
+export const FETCH_USERS = "FETCH_USERS";
+```
+
+###IN ACTION/INDEX
+```$xslt
+import {
+  CHANGE_AUTH,
+  FETCH_USERS,
+} from "./types";
+
+export function authenticate(isLoggedIn) {
+  return {
+    type: CHANGE_AUTH,
+    payload: isLoggedIn
+  };
+}
+
+export function fetchUsers() {
+  return {
+    type: FETCH_USERS,
+    payload: [
+      { name: 'Han' },
+      { name: 'Yoda' },
+      { name: 'Luke' },
+    ]
+  }
+}
+```
+
+###IN REDUCERS/USERS
+```$xslt
+import {
+  FETCH_USERS
+} from '../actions/types';
+
+export default function(state = [], action) {
+  switch (action.type) {
+    case FETCH_USERS:
+      return [ ...state, ...action.payload ];
+  }
+
+  return state;
+}
+```
+
+###IN REDUCERS/INDEX
+```
+import { combineReducers } from 'redux';
+import authReducer from './authentication';
+import usersReducer from './users';
+const rootReducer = combineReducers({
+  authenticated: authReducer,
+  users: usersReducer,
+});
+
+export default rootReducer;
+
+```
