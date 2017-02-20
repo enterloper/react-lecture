@@ -1,0 +1,3 @@
+import {
+ CHANGE_AUTH
+}
