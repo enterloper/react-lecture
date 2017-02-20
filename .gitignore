@@ -1,0 +1,14 @@
+/node_modules
+bundle.js
+npm-debug.log
+# IntelliJ
+*.iml
+/.idea
+.DS_Store
+notes.md
+.idea
+npm-shrinkwrap.json
+dist/scripts/bundle.js
+dist/*
+.idea/
+client_side/node_modules/
