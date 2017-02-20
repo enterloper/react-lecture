@@ -8,6 +8,10 @@ export default function(ComposedComponent) {
       router: React.PropTypes.object
     }
 
+    /*Because context is so easy to abuse (my MOST top level component is going to provide all of my data for the entire application via context),
+     react makes you define a property called 'contextTypes' on each component.
+     */
+
     //THIRD STEP vvvv
     componentWillMount() {
       //this will be a THIRD proof of concept for using the router via this.context
@@ -51,8 +55,4 @@ export default function(ComposedComponent) {
  Answer: connect our Authentication class to our Redux store,
  if they're Authenticated then great we can have them see the protect resources.
  2:
- */
-
-/*Because context is so easy to abuse (my MOST top level component is going to provide all of my data for the entire application via context),
- react makes you define a property called 'contextTypes' on each component.
  */
