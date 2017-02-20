@@ -1,5 +1,6 @@
 import {
- CHANGE_AUTH
+  CHANGE_AUTH,
+  FETCH_USERS,
 } from "./types";
 
 export function authenticate(isLoggedIn) {
@@ -7,4 +8,15 @@ export function authenticate(isLoggedIn) {
    type: CHANGE_AUTH,
    payload: isLoggedIn
  };
+}
+
+export function fetchUsers() {
+  return {
+    type: FETCH_USERS,
+    payload: [
+      { name: 'Han' },
+      { name: 'Luke' },
+      { name: 'Yoda' },
+    ],
+  };
 }

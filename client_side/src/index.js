@@ -6,6 +6,7 @@ import { Router, Route, browserHistory } from 'react-router';
 
 import RequireAuth from './components/HOC/RequireAuth'
 import App from './components/app';
+import UserList from './components/User_List';
 import Resources from './components/Resources';
 import reducers from './reducers';
 
@@ -15,7 +16,8 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <Route path="resources" component={RequireAuth(Resources)}/>
+        <Route path="user-list" component={RequireAuth(UserList)}/>
+        <Route path="resources" component={RequireAuth(Resources)} />
       </Route>
     </Router>
   </Provider>
